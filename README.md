@@ -19,7 +19,7 @@ where,
 * jr: is the JasperReport engine.
 * {alias}: is your report alias defined in Report Service contribution.
 * {output}: pdf, xls, html are the default outputs.
-* param#: are params for your .jrxml (or jasper) report definition.
+* param#: are params for your .jrxml (or compiled .jasper) report definition.
 
 
 
