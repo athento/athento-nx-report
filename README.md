@@ -3,6 +3,7 @@
 This addon for Nuxeo DM define report managers and contributions. 
 
 - JasperReport manager is a contribution to generate reports with this engine.
+- _You can define your own report engine_.
 
 ## Jasper Report Engine
 
@@ -20,6 +21,31 @@ where,
 * {alias}: is your report alias defined in Report Service contribution.
 * {output}: pdf, xls, html are the default outputs.
 * param#: are params for your .jrxml (or compiled .jasper) report definition.
+
+##Example##
+
+First, you must define your report contribution:
+
+```
+<extension target="org.athento.nuxeo.report.ReportService"
+		point="report">
+
+		<report id="SampleReport" alias="sample">
+			<name translated="false">Sample!</name>
+			<compiled>false</compiled>
+			<path>reports/sample-report.jrxml</path>
+			<handler class="org.athento.nuxeo.report.test.SampleReportHandler" />
+		</report>
+
+</extension>
+```
+
+Find below the hiperlink in your XHTML view or Widget to get the your report in PDF (in a default Nuxeo DM instance):
+
+```
+http://localhost:8080/nuxeo/restAPI/jr/sample/report?output=pdf
+```
+
 
 
 
