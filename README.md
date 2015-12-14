@@ -1,10 +1,10 @@
-# Athento Report Manager
+# Athento Report Engine
 
 This addon for Nuxeo DM define report managers and contributions. 
 
 - JasperReport manager is a contribution to generate reports with this engine.
 
-## Jasper Rerport Engine
+## Jasper Report Engine
 
 ###How to use###
 
