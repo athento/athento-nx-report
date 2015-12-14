@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Athento Reports API for Nuxeo
+Bundle-SymbolicName: org.athento.nuxeo.report.api;singleton:=true
+Bundle-Localization: api
+Bundle-Vendor: Athento
+

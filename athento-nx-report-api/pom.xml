@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.athento.nuxeo</groupId>
+		<artifactId>athento-nx-report</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>athento-nx-report-api</artifactId>
+	<name>Athento Reports for Nuxeo - API</name>
+	<description>Athento using Report engines for Nuxeo - API</description>
+	<dependencies>
+		<dependency>
+			<groupId>org.nuxeo.common</groupId>
+			<artifactId>nuxeo-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.runtime</groupId>
+			<artifactId>nuxeo-runtime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.ecm.core</groupId>
+			<artifactId>nuxeo-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.ecm.core</groupId>
+			<artifactId>nuxeo-core-api</artifactId>
+		</dependency>
+	</dependencies>
+</project>

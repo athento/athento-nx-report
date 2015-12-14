@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Athento Test JasperReport Manager for Nuxeo
+Bundle-SymbolicName: org.athento.nuxeo.report.jasperreport.test;singleton:=true
+Bundle-Localization: test
+Nuxeo-Component: OSGI-INF/test-report-jasper-contrib.xml
+Bundle-Vendor: Athento
+

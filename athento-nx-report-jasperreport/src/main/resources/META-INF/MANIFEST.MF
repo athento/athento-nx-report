@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Athento JasperReport Manager for Nuxeo
+Bundle-SymbolicName: org.athento.nuxeo.report.jasperreport;singleton:=true
+Bundle-Localization: plugin
+Nuxeo-Component: OSGI-INF/report-jasper-contrib.xml
+Bundle-Vendor: Athento
+

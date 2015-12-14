@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<component name="org.athento.nuxeo.report.plugin.ReportContrib"
+	version="1.0">
+
+	<documentation>
+		This component is contributing the jasperReport reports module.
+		@author
+		<a href="mailto:victorsanchez@yerbabuena.es">Victor Sanchez</a>
+	</documentation>
+
+	<extension target="org.athento.nuxeo.report.ReportService"
+		point="reportEngine">
+		<reportEngine name="jr" default="true">
+			<class>org.athento.nuxeo.report.plugin.JRManager</class>
+		</reportEngine>
+	</extension>
+
+	<extension target="org.athento.nuxeo.report.ReportService"
+		point="output">
+		<output id="OutputPDFJasperReport" reqParam="pdf">
+			<class>org.athento.nuxeo.report.plugin.output.PDFOutput</class>
+		</output>
+		<output id="OutputHTMLJasperReport" reqParam="html">
+			<class>org.athento.nuxeo.report.plugin.output.HTMLOutput</class>
+		</output>
+		<output id="OutputXLSJasperReport" reqParam="xls">
+			<class>org.athento.nuxeo.report.plugin.output.JXLSOutput</class>
+		</output>
+	</extension>
+
+</component>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-12-12T14:27:55 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Sample" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a9e5f0ce-9ccc-443b-b99b-7183c3805e6c">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Zebra" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 1]]></conditionExpression>
+			<style backcolor="#98E3FA"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="REPORT_TITLE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="name" class="java.lang.String"/>
+	<field name="age" class="java.lang.Integer"/>
+	<field name="address" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="10" width="800" height="21" uuid="b676fbb1-6c37-4fa2-98b2-de47a8d0e343"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_TITLE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="697" y="19" width="100" height="16" uuid="b8277510-0237-4a02-9e0e-4d864cb8b05e"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="70" height="25" forecolor="#FFFFFF" backcolor="#1A7BD5" uuid="4cee42bd-b5e3-4489-b430-099ca30aa21f">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box padding="3">
+					<topPen lineWidth="0.5" lineColor="#76AFE0"/>
+					<leftPen lineWidth="0.5" lineColor="#76AFE0"/>
+					<bottomPen lineWidth="0.5" lineColor="#76AFE0"/>
+					<rightPen lineWidth="0.5" lineColor="#76AFE0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="70" y="0" width="60" height="25" forecolor="#FFFFFF" backcolor="#1A7BD5" uuid="e74bb65f-0929-45f9-a526-0238109957a5">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box padding="3">
+					<topPen lineWidth="0.5" lineColor="#76AFE0"/>
+					<leftPen lineWidth="0.5" lineColor="#76AFE0"/>
+					<bottomPen lineWidth="0.5" lineColor="#76AFE0"/>
+					<rightPen lineWidth="0.5" lineColor="#76AFE0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Age]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="130" y="0" width="671" height="25" forecolor="#FFFFFF" backcolor="#1A7BD5" uuid="2a057f04-1fc2-4a92-a911-8a1da0e1c4ad"/>
+				<box padding="3">
+					<topPen lineWidth="0.5" lineColor="#76AFE0"/>
+					<leftPen lineWidth="0.5" lineColor="#76AFE0"/>
+					<bottomPen lineWidth="0.5" lineColor="#76AFE0"/>
+					<rightPen lineWidth="0.5" lineColor="#76AFE0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="70" height="20" uuid="d63c8525-13b2-4339-86e3-dd4d51877e12"/>
+				<box padding="2" leftPadding="2">
+					<topPen lineWidth="1.0" lineColor="#76AFE0"/>
+					<leftPen lineWidth="1.0" lineColor="#76AFE0"/>
+					<bottomPen lineWidth="1.0" lineColor="#76AFE0"/>
+					<rightPen lineWidth="1.0" lineColor="#76AFE0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Zebra" mode="Opaque" x="70" y="0" width="60" height="20" uuid="ce01045e-c538-47f9-8810-ea491cbf4987"/>
+				<box padding="2" leftPadding="2">
+					<topPen lineWidth="1.0" lineColor="#76AFE0"/>
+					<leftPen lineWidth="1.0" lineColor="#76AFE0"/>
+					<bottomPen lineWidth="1.0" lineColor="#76AFE0"/>
+					<rightPen lineWidth="1.0" lineColor="#76AFE0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{age}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Zebra" mode="Opaque" x="130" y="0" width="671" height="20" uuid="0acfadc5-457f-4cab-9ffd-5fdf32c7d699"/>
+				<box padding="2" leftPadding="2">
+					<topPen lineWidth="1.0" lineColor="#76AFE0"/>
+					<leftPen lineWidth="1.0" lineColor="#76AFE0"/>
+					<bottomPen lineWidth="1.0" lineColor="#76AFE0"/>
+					<rightPen lineWidth="1.0" lineColor="#76AFE0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

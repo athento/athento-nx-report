@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<component name="org.athento.nuxeo.report.web.RestletContrib"
+	version="1.0">
+
+	<documentation>
+		This component is contributing the Restlet Manager for manage reports.
+		@author
+		<a href="mailto:victorsanchez@yerbabuena.es">Victor Sanchez</a>
+	</documentation>
+
+	<extension
+		target="org.nuxeo.ecm.platform.ui.web.restAPI.service.PluggableRestletService"
+		point="restlets">
+
+		<documentation>
+			Generate a report given the report engine, the report id and
+			output type:
+			/nuxeo/restAPI/{engine}/{report}/report?output=type
+		</documentation>
+		<restletPlugin name="defaultReportRestlet"
+			class="org.athento.nuxeo.report.web.restlet.ReportRestlet" enabled="true"
+			useSeam="true"
+			useConversation="true">
+			<urlPatterns>
+				<urlPattern>/{engine}/{report}/report</urlPattern>
+			</urlPatterns>
+		</restletPlugin>
+
+	</extension>
+
+</component>

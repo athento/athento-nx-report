@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<component name="org.athento.nuxeo.report.ReportService" version="1.0">
+  <documentation>
+    @author <a href="mailto:victorsanchez@yerbabuena.es">Victor Sanchez</a>
+  </documentation>
+  
+  <service>
+    <provide interface="org.athento.nuxeo.report.api.ReportManager"/>
+  </service>
+
+  <implementation class="org.athento.nuxeo.report.core.ReportService"/>  
+  
+  <extension-point name="reportEngine">
+  	<documentation>
+  	  Extension Point to register new Athento report engines.
+  	  <code>
+  	     <reportEngine name="jasperReport">
+  	     	<class>org.manager.report.YourReportEngine</class>
+  	     </reportEngine>
+  	  </code>
+  	</documentation>
+  	<object
+  		class="org.athento.nuxeo.report.api.xpoint.ReportEngineDescriptor"/>
+  </extension-point>
+  
+  <extension-point name="report">
+  	<documentation>
+  	  Extension point to register new report.
+  	  <code>
+  	     <report id="name_of_report">
+  	     	<name translated="true">name_of_report</name>
+  	     	<uri compiled="false">jasper/jasper.jrxml</uri>
+  	     	<handler class="org.handler.class.HandlerClass"/>
+  	     	<debug>
+	  			<outputFile enconding="utf-8">/uri_of_file/debug.jrxml</outputFile>
+	  		</debug>
+  	     </report>
+  	  </code>
+  	</documentation>
+  	<object
+  		class="org.athento.nuxeo.report.api.xpoint.ReportDescriptor"/>
+  </extension-point>
+  
+  <extension-point name="output">
+  	<documentation>
+  	 Extension point to register an output report.
+  	 <code>
+  	 	<output id="output_name">
+  	 		<class>org.this.is.the.handler.OutputReportClass</class>
+  	 	</output>
+  	 </code>
+    </documentation>
+  	<object
+  		class="org.athento.nuxeo.report.api.xpoint.OutputDescriptor"/>
+  </extension-point>
+
+</component>

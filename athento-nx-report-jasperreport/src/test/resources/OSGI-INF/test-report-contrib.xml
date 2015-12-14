@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<component name="org.athento.nuxeo.report.plugin.TestReportContrib"
+	version="1.0">
+
+	<extension target="org.athento.nuxeo.report.ReportService"
+		point="report">
+
+		<report id="SampleReport" alias="sample">
+			<name translated="false">Sample!</name>
+			<compiled>false</compiled>
+			<path>reports/sample-report.jrxml</path>
+			<handler class="org.athento.nuxeo.report.test.SampleReportHandler" />
+		</report>
+
+	</extension>
+
+</component>

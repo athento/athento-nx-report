@@ -1,0 +1,209 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.athento.nuxeo</groupId>
+	<artifactId>athento-nx-report</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>Athento Reports for Nuxeo </name>
+	<description>Athento using Report engines for Nuxeo</description>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>athento-nx-report-jasperreport</module>
+		<module>athento-nx-report-api</module>
+		<module>athento-nx-report-core</module>
+		<module>athento-nx-report-web</module>
+	</modules>
+
+	<licenses>
+		<license>
+			<name>ASSL</name>
+			<url>http://www.athento.com/about/license/</url>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>Yerbabuena Software</name>
+		<url>http://www.yerbabuena.es</url>
+	</organization>
+
+	<inceptionYear>${copyright.year}</inceptionYear>
+
+	<developers>
+		<developer>
+			<id>vs</id>
+			<name>Victor Sanchez</name>
+			<email>vs@athento.com</email>
+			<url>https://github.com/victorsanchez</url>
+			<organization>Athento</organization>
+			<organizationUrl>http://www.athento.com</organizationUrl>
+		</developer>
+	</developers>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.nuxeo.ecm.distribution</groupId>
+				<artifactId>nuxeo-distribution</artifactId>
+				<scope>import</scope>
+				<type>pom</type>
+				<version>${nuxeo.platform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.common</groupId>
+				<artifactId>nuxeo-common</artifactId>
+				<version>${nuxeo.platform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.runtime</groupId>
+				<artifactId>nuxeo-runtime</artifactId>
+				<version>${nuxeo.platform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.ecm.core</groupId>
+				<artifactId>nuxeo-core</artifactId>
+				<version>${nuxeo.platform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.ecm.core</groupId>
+				<artifactId>nuxeo-core-api</artifactId>
+				<version>${nuxeo.platform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.ecm.core</groupId>
+				<artifactId>nuxeo-core-query</artifactId>
+				<version>${nuxeo.platform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.ecm.core</groupId>
+				<artifactId>nuxeo-core-schema</artifactId>
+				<version>${nuxeo.platform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.ecm.automation</groupId>
+				<artifactId>nuxeo-automation-core</artifactId>
+				<version>${nuxeo.platform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging-api</artifactId>
+				<version>1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.ecm.routing</groupId>
+				<artifactId>nuxeo-routing-core</artifactId>
+				<version>${nuxeo.platform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.ecm.automation</groupId>
+				<artifactId>nuxeo-automation-test</artifactId>
+				<version>${nuxeo.platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.ecm.platform</groupId>
+				<artifactId>nuxeo-platform-test</artifactId>
+				<version>${nuxeo.platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.runtime</groupId>
+				<artifactId>nuxeo-runtime-test</artifactId>
+				<version>${nuxeo.platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.ecm.automation</groupId>
+				<artifactId>nuxeo-automation-client</artifactId>
+				<version>${nuxeo.platform.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>public</id>
+			<name>Nuxeo Public </name>
+			<url>https://maven.nuxeo.org/nexus/content/repositories/public-releases</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>public-snapshot</id>
+			<name>Nuxeo Public SNAPSHOT</name>
+			<url>https://maven.nuxeo.org/nexus/content/repositories/public-snapshots</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>athento-public</id>
+			<name>Athento Releases</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>athento-public-snapshots</id>
+			<name>Athento Artifact Snapshots</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public-snapshot</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>athento-libs-releases</id>
+			<name></name>
+			<url>http://maven2.yerbabuena.es/artifactory/libs-releases</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.8</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestFile>
+							src/main/resources/META-INF/MANIFEST.MF
+						</manifestFile>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<properties>
+		<nuxeo.platform.version>6.0</nuxeo.platform.version>
+	</properties>
+</project>

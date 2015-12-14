@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Athento Reports Web for Nuxeo
+Bundle-SymbolicName: org.athento.nuxeo.report.web;singleton:=true
+Bundle-Localization: web
+Nuxeo-Component: OSGI-INF/restlet-contrib.xml
+Bundle-Vendor: Athento
+
