@@ -10,7 +10,9 @@ This addon for Nuxeo DM define report managers and contributions.
 
 You can access to your report via REST API:
 
+```
 http://${HOST}/nuxeo/restAPI/jr/{alias}/report?output=pdf&param1=...&param2=...
+```
 
 where,
 
