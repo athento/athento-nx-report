@@ -13,7 +13,7 @@ Make a contribution with your manager for the report engine.
 <extension target="org.athento.nuxeo.report.ReportService"
 	point="reportEngine">
 	<reportEngine name="jr" default="true">
-	<class>org.athento.nuxeo.report.plugin.JRManager</class>
+		<class>org.athento.nuxeo.report.plugin.JRManager</class>
 	</reportEngine>
 </extension>
 ```
