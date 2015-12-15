@@ -66,7 +66,7 @@ First, you must define your report contribution:
 </extension>
 ```
 
-Find below the hiperlink in your XHTML view or Widget to get the your report in PDF (in a default Nuxeo DM instance):
+Find below the hiperlink in your XHTML view or Widget to get your 'sample' report in PDF output format (in a default Nuxeo DM instance):
 
 ```
 http://localhost:8080/nuxeo/restAPI/jr/sample/report?output=pdf
