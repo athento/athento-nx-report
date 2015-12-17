@@ -74,9 +74,10 @@ public class JXLSOutput implements OutputReport {
 			configuration.setDetectCellType(true);
 			configuration.setOnePagePerSheet(false);
 			configuration.setRemoveEmptySpaceBetweenRows(true);
+			configuration.setRemoveEmptySpaceBetweenColumns(true);
 			configuration.setShowGridLines(true);
 			configuration.setWhitePageBackground(false);
-			configuration.setCollapseRowSpan(false);
+			configuration.setCollapseRowSpan(true);
 			exporter.setConfiguration(configuration);
 
 			exporter.exportReport();
