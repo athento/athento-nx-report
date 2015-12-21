@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.athento.nuxeo</groupId>
 	<artifactId>athento-nx-report</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.2-SNAPSHOT</version>
 	<name>Athento Reports for Nuxeo </name>
 	<description>Athento using Report engines for Nuxeo</description>
 	<packaging>pom</packaging>
