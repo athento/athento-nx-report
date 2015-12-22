@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.athento.nuxeo</groupId>
 		<artifactId>athento-nx-report</artifactId>
-		<version>1.1-SNAPSHOT</version>
+		<version>1.1</version>
 	</parent>
 	<artifactId>athento-nx-report-api</artifactId>
 	<name>Athento Reports for Nuxeo - API</name>
