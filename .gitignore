@@ -4,3 +4,5 @@
 .checkstyle
 /.settings/
 */.settings/
+**/.DS_Store
+**/.metadata

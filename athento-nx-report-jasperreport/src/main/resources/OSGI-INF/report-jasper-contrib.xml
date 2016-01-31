@@ -18,13 +18,13 @@
 
 	<extension target="org.athento.nuxeo.report.ReportService"
 		point="output">
-		<output id="OutputPDFJasperReport" reqParam="pdf">
+		<output id="OutputPDFJasperReport" reqParam="pdf" extension=".pdf">
 			<class>org.athento.nuxeo.report.plugin.output.PDFOutput</class>
 		</output>
-		<output id="OutputHTMLJasperReport" reqParam="html">
+		<output id="OutputHTMLJasperReport" reqParam="html" extension=".html">
 			<class>org.athento.nuxeo.report.plugin.output.HTMLOutput</class>
 		</output>
-		<output id="OutputXLSJasperReport" reqParam="xls">
+		<output id="OutputXLSJasperReport" reqParam="xls" extension=".xls">
 			<class>org.athento.nuxeo.report.plugin.output.JXLSOutput</class>
 		</output>
 	</extension>

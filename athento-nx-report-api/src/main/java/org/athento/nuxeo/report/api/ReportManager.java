@@ -54,6 +54,13 @@ public interface ReportManager {
 	 * @return
 	 */
 	OutputReport getOutputReportByReqParam(String param);
+	
+	/**
+	 * Get output descriptor by id.
+	 * @param id the output id
+	 * @return the output descriptor
+	 */
+	OutputDescriptor getOutputDescriptorById(String id);
 
 	/**
 	 * Get all reports.
