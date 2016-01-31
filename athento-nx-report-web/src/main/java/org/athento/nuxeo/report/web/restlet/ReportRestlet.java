@@ -139,7 +139,7 @@ public class ReportRestlet extends BaseNuxeoRestlet implements Serializable {
 			// set the content disposition and file name
 			String filename = report.getDescriptor().getName();
 			OutputDescriptor outputDescriptor = manager
-					.getOutputDescriptorById(outputId);
+					.getOutputDescriptorByReqParam(outputId);
 			String extension = outputDescriptor.getExtension();
 			if (extension != null) {
 				filename = new StringBuffer(filename).append(extension)

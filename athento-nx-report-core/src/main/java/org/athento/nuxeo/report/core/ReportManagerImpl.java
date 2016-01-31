@@ -118,7 +118,6 @@ public class ReportManagerImpl implements ReportManager {
 		if (param == null) {
 			throw new IllegalArgumentException();
 		}
-		System.out.println(outputs);
 		for (Entry<String, OutputDescriptor> descriptor : outputs.entrySet()) {
 			if (descriptor.getValue().getReqParam().equalsIgnoreCase(param)) {
 				return descriptor.getValue().getOutputReportHandler();
@@ -209,4 +208,20 @@ public class ReportManagerImpl implements ReportManager {
 	public OutputDescriptor getOutputDescriptorById(String id) {
 		return outputs.get(id);
 	}
+
+	/**
+	 * Get output descriptor by request param.
+	 */
+	public OutputDescriptor getOutputDescriptorByReqParam(String param) {
+		if (param == null) {
+			throw new IllegalArgumentException();
+		}
+		for (Entry<String, OutputDescriptor> descriptor : outputs.entrySet()) {
+			if (descriptor.getValue().getReqParam().equalsIgnoreCase(param)) {
+				return descriptor.getValue();
+			}
+		}
+		return null;
+	}
+
 }
