@@ -22,6 +22,7 @@ import org.athento.nuxeo.report.api.model.OutputReport;
 import org.athento.nuxeo.report.api.model.Report;
 import org.athento.nuxeo.report.api.model.ReportEngine;
 import org.athento.nuxeo.report.api.model.ReportHandler;
+import org.athento.nuxeo.report.api.xpoint.OutputDescriptor;
 import org.athento.nuxeo.report.api.xpoint.ReportDescriptor;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
@@ -72,7 +73,9 @@ public class ReportRestlet extends BaseNuxeoRestlet implements Serializable {
 	@Override
 	public void handle(Request req, final Response res) {
 
-		LOG.debug("Handle report restlet...");
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("Handle report restlet...");
+		}
 
 		String engine = (String) req.getAttributes().get("engine");
 		if (engine == null) {
@@ -134,7 +137,14 @@ public class ReportRestlet extends BaseNuxeoRestlet implements Serializable {
 			}
 
 			// set the content disposition and file name
-			String FILENAME = report.getDescriptor().getName();
+			String filename = report.getDescriptor().getName();
+			OutputDescriptor outputDescriptor = manager
+					.getOutputDescriptorByReqParam(outputId);
+			String extension = outputDescriptor.getExtension();
+			if (extension != null) {
+				filename = new StringBuffer(filename).append(extension)
+						.toString();
+			}
 
 			byte[] reportBytes = null;
 			try {
@@ -173,7 +183,7 @@ public class ReportRestlet extends BaseNuxeoRestlet implements Serializable {
 
 			HttpServletResponse response = getHttpResponse(res);
 			response.setHeader("Content-Disposition",
-					String.format("attachment; filename=\"%s\";", FILENAME));
+					String.format("attachment; filename=\"%s\";", filename));
 
 		} catch (Exception e) {
 			LOG.error("Unable to manage report restlet", e);
