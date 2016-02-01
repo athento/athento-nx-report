@@ -53,6 +53,7 @@ public class ReportService extends DefaultComponent {
 		} else if (ReportExtension.XPOINT_OUTPUT.equals(point)) {
 			for (Object contrib : extension.getContributions()) {
 				if (contrib instanceof OutputDescriptor) {
+					System.out.println(contrib);
 					registerOutput((OutputDescriptor) contrib);
 				} else {
 					LOG.error("Invalid contribution to extension point 'Output': "
@@ -68,7 +69,9 @@ public class ReportService extends DefaultComponent {
 	 * @param descriptor
 	 */
 	private void registerEngine(ReportEngineDescriptor descriptor) {
-		LOG.info("Registering engine...");
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("Registering engine...");
+		}
 		ReportManagerImpl.getInstance().getOrRegisterReportEngine(descriptor);
 	}
 
@@ -87,6 +90,7 @@ public class ReportService extends DefaultComponent {
 	 * @param descriptor
 	 */
 	private void registerOutput(OutputDescriptor descriptor) {
+		System.out.println("Register output " + descriptor);
 		ReportManagerImpl.getInstance().getOrRegisterOutput(descriptor);
 	}
 

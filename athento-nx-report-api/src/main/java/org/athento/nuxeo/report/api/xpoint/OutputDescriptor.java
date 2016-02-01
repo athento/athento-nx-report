@@ -22,6 +22,9 @@ public class OutputDescriptor {
 
 	@XNode("@reqParam")
 	private String reqParam;
+	
+	@XNode("@extension")
+	private String extension;
 
 	private OutputReport outputReportHandler;
 
@@ -52,6 +55,14 @@ public class OutputDescriptor {
 
 	public void setReqParam(String reqParam) {
 		this.reqParam = reqParam;
+	}
+
+	public String getExtension() {
+		return extension;
+	}
+
+	public void setExtension(String extension) {
+		this.extension = extension;
 	}
 
 }
