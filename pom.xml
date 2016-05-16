@@ -130,8 +130,11 @@
 		<repository>
 			<id>public</id>
 			<name>Nuxeo Public </name>
-			<url>https://maven.nuxeo.org/nexus/content/repositories/public-releases</url>
+			<url>https://maven.nuxeo.org/nexus/content/repositories/public</url>
 			<layout>default</layout>
+			<releases>
+                                <enabled>true</enabled>
+                        </releases>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -141,8 +144,11 @@
 			<name>Nuxeo Public SNAPSHOT</name>
 			<url>https://maven.nuxeo.org/nexus/content/repositories/public-snapshots</url>
 			<layout>default</layout>
-			<snapshots>
+			<releases>
 				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
 			</snapshots>
 		</repository>
 		<repository>
@@ -150,6 +156,9 @@
 			<name>Athento Releases</name>
 			<url>http://maven2.yerbabuena.es/artifactory/athento-public</url>
 			<layout>default</layout>
+			<releases>
+                                <enabled>true</enabled>
+                        </releases>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -159,6 +168,9 @@
 			<name>Athento Artifact Snapshots</name>
 			<url>http://maven2.yerbabuena.es/artifactory/athento-public-snapshot</url>
 			<layout>default</layout>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
@@ -168,6 +180,9 @@
 			<name></name>
 			<url>http://maven2.yerbabuena.es/artifactory/libs-releases</url>
 			<layout>default</layout>
+			<releases>
+                                <enabled>true</enabled>
+                        </releases>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
