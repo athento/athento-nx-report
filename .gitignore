@@ -6,3 +6,5 @@
 */.settings/
 **/.DS_Store
 **/.metadata
+*.iml
+.idea/

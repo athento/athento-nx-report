@@ -22,7 +22,7 @@ public interface ReportEngine {
 	 * @throws ReportException
 	 */
 	byte[] print(Report report, OutputReport output,
-			Map<String, String> printParams) throws ReportException;
+			Map<String, Object> printParams) throws ReportException;
 
 	/**
 	 * Print a report given a id.
@@ -33,7 +33,7 @@ public interface ReportEngine {
 	 * @return
 	 * @throws ReportException
 	 */
-	byte[] print(String id, OutputReport output, Map<String, String> printParams)
+	byte[] print(String id, OutputReport output, Map<String, Object> printParams)
 			throws ReportException;
 
 }

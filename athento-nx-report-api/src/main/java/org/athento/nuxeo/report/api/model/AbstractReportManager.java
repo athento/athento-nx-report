@@ -22,7 +22,7 @@ public abstract class AbstractReportManager implements ReportEngine {
 	 * @throws ReportException
 	 */
 	public byte[] print(Report report, OutputReport output,
-			Map<String, String> printParams) throws ReportException {
+			Map<String, Object> printParams) throws ReportException {
 		return new byte[0];
 	}
 
@@ -37,6 +37,6 @@ public abstract class AbstractReportManager implements ReportEngine {
 	 * @throws Exception
 	 */
 	public abstract Report createReport(Report report,
-			Map<String, String> params) throws Exception;
+			Map<String, Object> params) throws Exception;
 
 }

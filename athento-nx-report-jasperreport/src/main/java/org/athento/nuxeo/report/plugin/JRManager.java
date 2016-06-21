@@ -59,7 +59,7 @@ public class JRManager extends AbstractReportManager {
 	 * @throws ReportException
 	 *             on error
 	 */
-	public Report createReportByAlias(String alias, Map<String, String> params)
+	public Report createReportByAlias(String alias, Map<String, Object> params)
 			throws ReportException {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Creating report '" + alias + "'");
@@ -77,8 +77,8 @@ public class JRManager extends AbstractReportManager {
 	/**
 	 * Create a report by name and parameters.
 	 * 
-	 * @param id
-	 *            of report
+	 * @param report
+	 *            is the report
 	 * @param params
 	 *            are the report parameters
 	 * @return the report
@@ -86,7 +86,7 @@ public class JRManager extends AbstractReportManager {
 	 *             on error
 	 */
 	@Override
-	public Report createReport(Report report, Map<String, String> params)
+	public Report createReport(Report report, Map<String, Object> params)
 			throws ReportException {
 		// Report descriptor
 		ReportDescriptor reportDescriptor = report.getDescriptor();
@@ -125,7 +125,7 @@ public class JRManager extends AbstractReportManager {
 							if (!report.getDescriptor().isUseSeam()) {
 								handler = handlerClass.newInstance();
 								// Handle report
-								handler.handle(report, jasperDesign, params);
+								handler.handle(report, params);
 							}
 						} catch (InstantiationException
 								| IllegalAccessException e) {
@@ -167,7 +167,7 @@ public class JRManager extends AbstractReportManager {
 	 * 
 	 * @param id
 	 *            is the id of report to print
-	 * @param otuput
+	 * @param output
 	 *            is the output manager
 	 * @param printParams
 	 *            are the print parameters to the report
@@ -177,7 +177,7 @@ public class JRManager extends AbstractReportManager {
 	 */
 	@Override
 	public byte[] print(String id, OutputReport output,
-			Map<String, String> printParams) throws ReportException {
+			Map<String, Object> printParams) throws ReportException {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Print JR report...");
 		}
@@ -198,7 +198,7 @@ public class JRManager extends AbstractReportManager {
 	 * 
 	 * @param report
 	 *            is the report to print
-	 * @param otuput
+	 * @param output
 	 *            is the output manager
 	 * @param printParams
 	 *            are the print parameters to the report
@@ -208,7 +208,7 @@ public class JRManager extends AbstractReportManager {
 	 */
 	@Override
 	public byte[] print(Report report, OutputReport output,
-			Map<String, String> printParams) throws ReportException {
+			Map<String, Object> printParams) throws ReportException {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Print JR report...");
 		}

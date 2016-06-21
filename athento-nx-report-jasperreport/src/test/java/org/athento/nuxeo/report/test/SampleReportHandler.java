@@ -24,8 +24,7 @@ public class SampleReportHandler implements ReportHandler {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void handle(Report report, Object... data) throws ReportException {
-		Map<String, String> params = (Map<String, String>) data[1];
+	public void handle(Report report, Map<String, Object> params) throws ReportException {
 		setDatasource(report, params);
 	}
 
@@ -35,7 +34,7 @@ public class SampleReportHandler implements ReportHandler {
 	 * @param report
 	 * @param params
 	 */
-	private void setDatasource(Report report, Map<String, String> params) {
+	private void setDatasource(Report report, Map<String, Object> params) {
 		// Add records
 		List<BasicReportData> dataList = new ArrayList<BasicReportData>();
 		SampleReportBean dataBean = new SampleReportBean();

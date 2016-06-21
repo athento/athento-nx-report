@@ -1,17 +1,5 @@
 package org.athento.nuxeo.report.web.restlet;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.athento.nuxeo.report.api.ReportException;
@@ -41,6 +29,11 @@ import org.restlet.data.Parameter;
 import org.restlet.data.Request;
 import org.restlet.data.Response;
 import org.restlet.resource.OutputRepresentation;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Report restlet.
@@ -121,7 +114,7 @@ public class ReportRestlet extends BaseNuxeoRestlet implements Serializable {
 			report.setPrincipal(documentManager.getPrincipal());
 
 			// Set other parameters
-			Map<String, String> queryParams = new HashMap<String, String>();
+			Map<String, Object> queryParams = new HashMap<String, Object>();
 			Parameter[] params = getQueryParams(req);
 			for (Parameter param : params) {
 				queryParams.put(param.getName(), param.getValue());
@@ -197,9 +190,8 @@ public class ReportRestlet extends BaseNuxeoRestlet implements Serializable {
 	 * 
 	 * @param report
 	 * @param params
-	 * @param documentModel
 	 */
-	private void loadHandler(Report report, Map<String, String> params) {
+	private void loadHandler(Report report, Map<String, Object> params) {
 		ReportDescriptor descriptor = report.getDescriptor();
 		if (descriptor.isUseSeam()) {
 			if (LOG.isDebugEnabled()) {
@@ -209,10 +201,10 @@ public class ReportRestlet extends BaseNuxeoRestlet implements Serializable {
 				try {
 					ReportHandler handler = descriptor.getHandler()
 							.newInstance();
-					List<Object> handleParams = new ArrayList<Object>();
-					handleParams.add(documentManager);
-					handleParams.addAll(params.values());
-					handler.handle(report, handleParams.toArray(new Object[0]));
+					Map<String, Object> handleParams = new HashMap<String, Object>();
+					handleParams.put("documentManager", documentManager);
+					handleParams.putAll(params);
+					handler.handle(report, handleParams);
 				} catch (InstantiationException | IllegalAccessException
 						| ReportException e) {
 					e.printStackTrace();
