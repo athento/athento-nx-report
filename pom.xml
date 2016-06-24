@@ -40,6 +40,22 @@
 		</developer>
 	</developers>
 
+	<distributionManagement>
+          <repository>
+            <id>athento-manager-releases</id>
+            <name>Athento Releases</name>
+            <url>http://maven2.yerbabuena.es/artifactory/athento-private</url>
+            <layout>default</layout>
+          </repository>
+          <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>athento-manager-snapshots</id>
+            <name>Athento Artifact Snapshots</name>
+            <url>http://maven2.yerbabuena.es/artifactory/athento-private-snapshot</url>
+            <layout>default</layout>
+          </snapshotRepository>
+    	</distributionManagement>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
