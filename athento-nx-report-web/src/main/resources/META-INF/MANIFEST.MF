@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Athento Reports Web for Nuxeo
 Bundle-SymbolicName: org.athento.nuxeo.report.web;singleton:=true
 Bundle-Localization: web
-Nuxeo-Component: OSGI-INF/restlet-contrib.xml
+Nuxeo-Component: OSGI-INF/restlet-contrib.xml,
+ OSGI-INF/automation-contrib.xml
 Bundle-Vendor: Athento
 
