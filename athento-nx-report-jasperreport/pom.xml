@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.athento.nuxeo</groupId>
 		<artifactId>athento-nx-report</artifactId>
-		<version>1.2.3-SNAPSHOT</version>
+		<version>1.2.3</version>
 	</parent>
 	<artifactId>athento-nx-report-jasperreport</artifactId>
 	<name>Athento Reports for Nuxeo - Plugin for JasperReport</name>
@@ -13,7 +13,7 @@
 		<dependency>
 			<groupId>org.athento.nuxeo</groupId>
 			<artifactId>athento-nx-report-api</artifactId>
-			<version>1.2.3-SNAPSHOT</version>
+			<version>1.2.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.nuxeo.common</groupId>
@@ -76,7 +76,7 @@
 		<dependency>
 			<groupId>org.athento.nuxeo</groupId>
 			<artifactId>athento-nx-report-core</artifactId>
-			<version>1.2.3-SNAPSHOT</version>
+			<version>1.2.3</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
