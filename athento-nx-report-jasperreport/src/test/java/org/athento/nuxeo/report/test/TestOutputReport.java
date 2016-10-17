@@ -68,7 +68,7 @@ public class TestOutputReport {
 		ReportEngine jrManager = reportManager.getReportEngineById("jr");
 		Assert.assertNotNull(jrManager);
 		byte[] reportBytes = jrManager.print(sampleReport, xlsOutput,
-				new HashMap<String, String>(0));
+				new HashMap<String, Object>(0));
 
 		// Output XLS
 		File output = new File("/Users/victorsanchez/test/output.xls");
@@ -103,7 +103,7 @@ public class TestOutputReport {
 		Assert.assertNotNull(jrManager);
 
 		byte[] pdfReportBytes = jrManager.print(sampleReport, pdfOutput,
-				new HashMap<String, String>(0));
+				new HashMap<String, Object>(0));
 
 		// Output PDF
 		File outputPdf = new File("/Users/victorsanchez/test/output.pdf");

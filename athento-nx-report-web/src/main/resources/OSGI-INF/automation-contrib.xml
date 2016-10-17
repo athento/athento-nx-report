@@ -1,0 +1,10 @@
+<component name="org.athento.nuxeo.report.web.AutomationContrib"
+           version="1.0.0">
+
+    <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
+               point="operations">
+        <operation
+            class="org.athento.nuxeo.report.web.automation.GenerateReportOperation" />
+    </extension>
+
+</component>
