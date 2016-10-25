@@ -61,14 +61,15 @@ with, ie.
   "input": "{parent_folder}",
   "params": {
     "alias": "{alias}",
-    "format": "{output}", // default "pdf"
-    "engine": "{engine}", // default "jr"
+    "format": "{output}", 
+    "engine": "{engine}",
     "properties": {
-        ...
     }
   }
 }
 ```	
+- default format: "pdf"
+- default engine: "jr"
 
 ##Examples##
 
