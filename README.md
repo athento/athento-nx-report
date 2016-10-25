@@ -49,7 +49,7 @@ where,
 * param#: are params for your .jrxml (or compiled .jasper) report definition.
 
 
-#### You can generate a report using the **Automation service**:
+#### You can generate a report using the **Automation service** (*in a background worker*):
 
 ```
 POST http://${HOST}/nuxeo/site/automation/Athento.Report
@@ -59,7 +59,7 @@ with, ie.
 
 ```json
 {
-  "input": "{parent_folder}",
+  "input": "{destiny_folder}",
   "params": {
     "alias": "{alias}",
     "format": "{output}", 
