@@ -38,7 +38,7 @@ Make a contribution with the output implementation.
 You can access to your report via REST API:
 
 ```
-http://${HOST}/nuxeo/restAPI/jr/{alias}/report?output={output}&param1=...&param2=...
+GET http://${HOST}/nuxeo/restAPI/jr/{alias}/report?output={output}&param1=...&param2=...
 ```
 
 where,
@@ -48,7 +48,29 @@ where,
 * {output}: pdf, xls, html are the default outputs.
 * param#: are params for your .jrxml (or compiled .jasper) report definition.
 
-##Example##
+You can generate a report using the Automation service:
+
+```
+POST http://${HOST}/nuxeo/site/automation/Athento.Report
+```
+
+with, ie.
+
+```json
+{
+  "input": "{parent_folder}",
+  "params": {
+    "alias": "{alias}",
+    "format": "{output}", // default "pdf"
+    "engine": "{engine}", // default "jr"
+    "properties": {
+        ...
+    }
+  }
+}
+```	
+
+##Examples##
 
 First, you must define your report contribution:
 
@@ -69,7 +91,26 @@ First, you must define your report contribution:
 Find below the hiperlink in your XHTML view or Widget to get your 'sample' report in PDF output format (in a default Nuxeo DM instance):
 
 ```
-http://localhost:8080/nuxeo/restAPI/jr/sample/report?output=pdf
+GET http://localhost:8080/nuxeo/restAPI/jr/sample/report?output=pdf&subtitle=My great report&from=2016-01-10&to=2016-01-31
+```
+
+Also, using Automation:
+
+```
+POST http://${HOST}/nuxeo/site/automation/Athento.Report
+```
+
+```json
+{
+  "params": {
+    "alias": "sample",
+    "properties": {
+      "subtitle": "My great report",
+      "from": "2016-01-10",
+      "to": "2016-01-31"
+    }
+  }
+}	
 ```
 
 
