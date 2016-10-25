@@ -35,7 +35,7 @@ Make a contribution with the output implementation.
 
 ###How to use###
 
-- You can access to your report via **REST API**:
+#### You can access to your report via **REST API**:
 
 ```
 GET http://${HOST}/nuxeo/restAPI/jr/{alias}/report?output={output}&param1=...&param2=...
@@ -49,7 +49,7 @@ where,
 * param#: are params for your .jrxml (or compiled .jasper) report definition.
 
 
-- You can generate a report using the **Automation service**:
+#### You can generate a report using the **Automation service**:
 
 ```
 POST http://${HOST}/nuxeo/site/automation/Athento.Report
