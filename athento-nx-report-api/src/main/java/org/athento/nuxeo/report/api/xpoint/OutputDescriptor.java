@@ -26,6 +26,12 @@ public class OutputDescriptor {
 	@XNode("@extension")
 	private String extension;
 
+	@XNode("mimetype")
+	private String mimetype;
+
+	@XNode("encoding")
+	private String encoding;
+
 	private OutputReport outputReportHandler;
 
 	public String getId() {
@@ -65,4 +71,19 @@ public class OutputDescriptor {
 		this.extension = extension;
 	}
 
+	public String getMimetype() {
+		return mimetype;
+	}
+
+	public void setMimetype(String mimetype) {
+		this.mimetype = mimetype;
+	}
+
+	public String getEncoding() {
+		return encoding;
+	}
+
+	public void setEncoding(String encoding) {
+		this.encoding = encoding;
+	}
 }

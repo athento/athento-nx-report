@@ -95,8 +95,8 @@ public class GenerateReportWorker extends AbstractWork {
 			FileBlob blob = new FileBlob(file);
 			blob.setFilename(report.getDescriptor().getName() + "."
 					+ (outputFormat != null ? outputFormat : "out"));
-			blob.setMimeType(this.report.getDescriptor().getMimetype());
-			blob.setEncoding(this.report.getDescriptor().getEncoding());
+			blob.setMimeType(this.output.getMimetype());
+			blob.setEncoding(this.output.getEncoding());
 			// Check destiny folder for save the report
 			if (destiny == null) {
 				throw new DocumentException("Destiny folder is not found!");

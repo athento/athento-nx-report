@@ -23,6 +23,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.athento.nuxeo.report.api.ReportException;
+import org.athento.nuxeo.report.api.model.AbstractOutput;
 import org.athento.nuxeo.report.api.model.OutputReport;
 import org.athento.nuxeo.report.api.model.Report;
 import org.athento.nuxeo.report.plugin.JRReport;
@@ -33,7 +34,7 @@ import org.athento.nuxeo.report.plugin.JRReport;
  * @author victorsanchez
  * 
  */
-public class JXLSOutput implements OutputReport {
+public class JXLSOutput extends AbstractOutput implements OutputReport {
 
 	private Log log = LogFactory.getLog(JXLSOutput.class);
 
@@ -98,6 +99,16 @@ public class JXLSOutput implements OutputReport {
 				tmpFile.delete();
 			}
 		}
+	}
+
+	@Override
+	public String getMimetype() {
+		return "application/excel";
+	}
+
+	@Override
+	public String getEncoding() {
+		return null;
 	}
 
 }

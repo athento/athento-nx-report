@@ -16,6 +16,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.athento.nuxeo.report.api.ReportException;
+import org.athento.nuxeo.report.api.model.AbstractOutput;
 import org.athento.nuxeo.report.api.model.OutputReport;
 import org.athento.nuxeo.report.api.model.Report;
 import org.athento.nuxeo.report.plugin.JRReport;
@@ -26,7 +27,7 @@ import org.athento.nuxeo.report.plugin.JRReport;
  * @author victorsanchez
  * 
  */
-public class PDFOutput implements OutputReport {
+public class PDFOutput extends AbstractOutput implements OutputReport {
 
 	private Log log = LogFactory.getLog(PDFOutput.class);
 
@@ -60,6 +61,16 @@ public class PDFOutput implements OutputReport {
 			log.error("Unable to get report PDF.", e);
 			throw new ReportException(e.getMessage(), e.getCause());
 		}
+	}
+
+	@Override
+	public String getMimetype() {
+		return "application/pdf";
+	}
+
+	@Override
+	public String getEncoding() {
+		return null;
 	}
 
 }

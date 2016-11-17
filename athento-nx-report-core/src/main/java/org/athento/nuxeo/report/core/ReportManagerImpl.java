@@ -120,7 +120,10 @@ public class ReportManagerImpl implements ReportManager {
 		}
 		for (Entry<String, OutputDescriptor> descriptor : outputs.entrySet()) {
 			if (descriptor.getValue().getReqParam().equalsIgnoreCase(param)) {
-				return descriptor.getValue().getOutputReportHandler();
+				OutputReport outputReport = descriptor.getValue().getOutputReportHandler();
+				outputReport.setMimetype(descriptor.getValue().getMimetype());
+				outputReport.setEncoding(descriptor.getValue().getEncoding());
+				return outputReport;
 			}
 		}
 		return null;
