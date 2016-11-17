@@ -103,7 +103,7 @@ public class JXLSOutput extends AbstractOutput implements OutputReport {
 
 	@Override
 	public String getMimetype() {
-		return "application/excel";
+		return "application/vnd.ms-excel";
 	}
 
 	@Override
