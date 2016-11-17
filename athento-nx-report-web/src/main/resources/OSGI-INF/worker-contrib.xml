@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<component name="org.athento.nuxeo.report.web.WorkerContrib"
+           version="1.0">
+
+    <extension target="org.nuxeo.ecm.core.work.service" point="queues">
+        <queue id="reporting">
+            <name>Reporting</name>
+            <maxThreads>${reporting.generation.maxThreads:=4}</maxThreads>
+            <category>reporting</category>
+            <clearCompletedAfterSeconds>${reporting.generation.clearCompletedAfterSeconds:=300}</clearCompletedAfterSeconds>
+        </queue>
+    </extension>
+
+</component>

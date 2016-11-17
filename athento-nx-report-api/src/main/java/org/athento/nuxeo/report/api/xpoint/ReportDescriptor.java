@@ -39,11 +39,17 @@ public class ReportDescriptor {
 	@XNode("@useSeam")
 	private boolean useSeam;
 
+	@XNode("mimetype")
+	private String mimetype;
+
+    @XNode("encoding")
+    private String encoding;
+
 	@XNode("debug/outputFile")
 	private String outputFileDebug;
 
 	@XNode("debug/outputFile@encoding")
-	private String enconding;
+	private String debugEncoding;
 
 	@XNode("handler@class")
 	private Class<ReportHandler> handler;
@@ -115,15 +121,24 @@ public class ReportDescriptor {
 		this.outputFileDebug = outputFileDebug;
 	}
 
-	public String getEnconding() {
-		return enconding;
-	}
 
-	public void setEnconding(String enconding) {
-		this.enconding = enconding;
-	}
+    public String getDebugEncoding() {
+        return debugEncoding;
+    }
 
-	/**
+    public void setDebugEncoding(String debugEncoding) {
+        this.debugEncoding = debugEncoding;
+    }
+
+    public String getEncoding() {
+        return encoding;
+    }
+
+    public void setEncoding(String encoding) {
+        this.encoding = encoding;
+    }
+
+    /**
 	 * @return the alias
 	 */
 	public String getAlias() {
@@ -152,5 +167,14 @@ public class ReportDescriptor {
 	public void setUseSeam(boolean useSeam) {
 		this.useSeam = useSeam;
 	}
+
+	public String getMimetype() {
+		return mimetype;
+	}
+
+	public void setMimetype(String mimetype) {
+		this.mimetype = mimetype;
+	}
+
 
 }

@@ -139,7 +139,7 @@ public class JRManager extends AbstractReportManager {
 				if (report.getDescriptor().getOutputFileDebug() != null) {
 					JRXmlWriter.writeReport(jr, report.getDescriptor()
 							.getOutputFileDebug(), report.getDescriptor()
-							.getEnconding());
+							.getDebugEncoding());
 				}
 				// Add parameters to report
 				report.getParameters().putAll(params);

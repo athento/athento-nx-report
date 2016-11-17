@@ -18,13 +18,13 @@ import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.nuxeo.ecm.core.event.EventService;
 import org.nuxeo.ecm.core.work.AbstractWork;
-import org.nuxeo.ecm.core.work.api.Work;
-import org.nuxeo.ecm.core.work.api.WorkManager;
 import org.nuxeo.runtime.api.Framework;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,11 +39,12 @@ public class GenerateReportWorker extends AbstractWork {
 	/** Log. */
 	private static final Log LOG = LogFactory.getLog(GenerateReportWorker.class);
 
-	public static final String CATEGORY = "Reporting";
+	public static final String CATEGORY = "reporting";
 
 	private ReportEngine reportEngine;
 	private Report report;
 	private OutputReport output;
+	private String outputFormat;
 	private DocumentModel destiny;
 
     private Properties properties;
@@ -54,19 +55,22 @@ public class GenerateReportWorker extends AbstractWork {
 	 * @param engine is the report engine
 	 * @param report is the report
 	 * @param output is the output
+	 * @param outputFormat is the output format
 	 * @param destiny is the folder to save the generated report
      */
-	public GenerateReportWorker(ReportEngine engine, Report report, OutputReport output, DocumentModel destiny) {
+	public GenerateReportWorker(ReportEngine engine, Report report, OutputReport output, String outputFormat, DocumentModel destiny) {
 		this.reportEngine = engine;
         this.report = report;
 		this.output = output;
+		this.outputFormat = outputFormat;
 		this.destiny = destiny;
 	}
 
 	@Override
 	public String getTitle() {
-		return getCategory();
+		return this.report.getDescriptor().getAlias();
 	}
+
 	@Override
 	public String getCategory() {
 		return CATEGORY;
@@ -89,6 +93,10 @@ public class GenerateReportWorker extends AbstractWork {
 			// Write report into file
 			FileUtils.writeByteArrayToFile(file, reportBytes);
 			FileBlob blob = new FileBlob(file);
+			blob.setFilename(report.getDescriptor().getName() + "."
+					+ (outputFormat != null ? outputFormat : "out"));
+			blob.setMimeType(this.report.getDescriptor().getMimetype());
+			blob.setEncoding(this.report.getDescriptor().getEncoding());
 			// Check destiny folder for save the report
 			if (destiny == null) {
 				throw new DocumentException("Destiny folder is not found!");
@@ -96,7 +104,8 @@ public class GenerateReportWorker extends AbstractWork {
 			DocumentModel reportDocument =
 					session.createDocumentModel(destiny.getPathAsString(), IdUtils.generateStringId(), "File");
 			// Set default properties
-			reportDocument.setPropertyValue("dc:title", report.getDescriptor().getAlias() + "_" + System.currentTimeMillis());
+			reportDocument.setPropertyValue("dc:title", report.getDescriptor().getAlias() + "_"
+                    + new SimpleDateFormat("yyyyMMddHHmmss").format(GregorianCalendar.getInstance().getTime()));
 			reportDocument.setPropertyValue("file:content", blob);
             // Create document
             reportDocument = this.session.createDocument(reportDocument);

@@ -1,6 +1,5 @@
 package org.athento.nuxeo.report.web.automation;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.athento.nuxeo.report.api.ReportException;
@@ -8,27 +7,17 @@ import org.athento.nuxeo.report.api.ReportManager;
 import org.athento.nuxeo.report.api.model.OutputReport;
 import org.athento.nuxeo.report.api.model.Report;
 import org.athento.nuxeo.report.api.model.ReportEngine;
-import org.athento.nuxeo.report.api.model.ReportHandler;
-import org.athento.nuxeo.report.api.xpoint.ReportDescriptor;
 import org.athento.nuxeo.report.web.worker.GenerateReportWorker;
-import org.nuxeo.common.utils.IdUtils;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
 import org.nuxeo.ecm.automation.core.annotations.Param;
 import org.nuxeo.ecm.automation.core.util.Properties;
 import org.nuxeo.ecm.core.api.CoreSession;
-import org.nuxeo.ecm.core.api.DocumentException;
 import org.nuxeo.ecm.core.api.DocumentModel;
-import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.nuxeo.ecm.core.work.api.WorkManager;
 import org.nuxeo.ecm.platform.userworkspace.api.UserWorkspaceService;
 import org.nuxeo.runtime.api.Framework;
-import org.restlet.data.Parameter;
-
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Generate a report operation.
@@ -47,10 +36,6 @@ public class GenerateReportOperation {
     /** Session. */
     @Context
     protected CoreSession session;
-
-    /** Report service. */
-    @Context
-    protected ReportManager reportManager;
 
     /** User workspace service. */
     @Context
@@ -89,6 +74,8 @@ public class GenerateReportOperation {
             LOG.info("Generating report " + alias + " ...");
         }
 
+        ReportManager reportManager = Framework.getService(ReportManager.class);
+
         // Get output format
         OutputReport output = reportManager.getOutputReportByReqParam(this.format);
         if (output == null) {
@@ -116,7 +103,7 @@ public class GenerateReportOperation {
         }
 
         // Report worker
-        GenerateReportWorker reportWorker = new GenerateReportWorker(engine, report, output, destiny);
+        GenerateReportWorker reportWorker = new GenerateReportWorker(engine, report, output, this.format, destiny);
         reportWorker.setProperties(this.properties);
         workManager.schedule(reportWorker, WorkManager.Scheduling.IF_NOT_RUNNING_OR_SCHEDULED);
 
