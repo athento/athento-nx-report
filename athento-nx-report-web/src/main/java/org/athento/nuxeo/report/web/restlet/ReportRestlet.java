@@ -143,6 +143,7 @@ public class ReportRestlet extends BaseNuxeoRestlet implements Serializable {
 			try {
 				reportBytes = reportEngine.print(report, output, queryParams);
 			} catch (ReportException e) {
+				LOG.error("Unable to print the report", e);
 				handleError(res,
 						"Problem ocurred printing report: " + e.getMessage());
 				return;

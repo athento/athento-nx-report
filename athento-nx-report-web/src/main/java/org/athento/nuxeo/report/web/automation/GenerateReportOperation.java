@@ -45,6 +45,10 @@ public class GenerateReportOperation {
     @Context
     protected WorkManager workManager;
 
+    /** Report title. */
+    @Param(name = "title", required = false, description = "Report title")
+    protected String title;
+
     /** Report engine. */
     @Param(name = "engine", required = false, description = "Report engine (ie. jr", values = {"jr"})
     protected String engine = "jr";
@@ -103,7 +107,7 @@ public class GenerateReportOperation {
         }
 
         // Report worker
-        GenerateReportWorker reportWorker = new GenerateReportWorker(engine, report, output, this.format, destiny);
+        GenerateReportWorker reportWorker = new GenerateReportWorker(engine, report, output, this.format, destiny, title);
         reportWorker.setProperties(this.properties);
         workManager.schedule(reportWorker, WorkManager.Scheduling.IF_NOT_RUNNING_OR_SCHEDULED);
 

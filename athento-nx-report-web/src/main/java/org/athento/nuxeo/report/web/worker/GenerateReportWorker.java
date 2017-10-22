@@ -46,7 +46,7 @@ public class GenerateReportWorker extends AbstractWork {
 	private OutputReport output;
 	private String outputFormat;
 	private DocumentModel destiny;
-
+	private String title;
     private Properties properties;
 
 	/**
@@ -57,18 +57,21 @@ public class GenerateReportWorker extends AbstractWork {
 	 * @param output is the output
 	 * @param outputFormat is the output format
 	 * @param destiny is the folder to save the generated report
+	 * @param title is the report title
      */
-	public GenerateReportWorker(ReportEngine engine, Report report, OutputReport output, String outputFormat, DocumentModel destiny) {
+	public GenerateReportWorker(ReportEngine engine, Report report, OutputReport output, String outputFormat, DocumentModel destiny, String title) {
 		this.reportEngine = engine;
         this.report = report;
 		this.output = output;
 		this.outputFormat = outputFormat;
 		this.destiny = destiny;
+		this.title = title;
 	}
 
 	@Override
 	public String getTitle() {
-		return this.report.getDescriptor().getAlias();
+		return title == null ? report.getDescriptor().getAlias() + "_"
+				+ new SimpleDateFormat("yyyyMMddHHmmss").format(GregorianCalendar.getInstance().getTime()) : title;
 	}
 
 	@Override
@@ -104,8 +107,7 @@ public class GenerateReportWorker extends AbstractWork {
 			DocumentModel reportDocument =
 					session.createDocumentModel(destiny.getPathAsString(), IdUtils.generateStringId(), "File");
 			// Set default properties
-			reportDocument.setPropertyValue("dc:title", report.getDescriptor().getAlias() + "_"
-                    + new SimpleDateFormat("yyyyMMddHHmmss").format(GregorianCalendar.getInstance().getTime()));
+			reportDocument.setPropertyValue("dc:title", getTitle());
 			reportDocument.setPropertyValue("file:content", blob);
             // Create document
             reportDocument = this.session.createDocument(reportDocument);

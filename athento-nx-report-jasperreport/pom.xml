@@ -32,9 +32,9 @@
 			<artifactId>nuxeo-core-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>jasperreports</groupId>
+			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>6.2.0</version>
+			<version>${jasperreport.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -80,4 +80,8 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<properties>
+		<jasperreport.version>6.2.0</jasperreport.version>
+	</properties>
 </project>
