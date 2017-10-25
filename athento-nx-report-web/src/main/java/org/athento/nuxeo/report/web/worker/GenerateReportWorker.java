@@ -118,6 +118,7 @@ public class GenerateReportWorker extends AbstractWork {
             final ReportEventContext event = new ReportEventContext(
                     this.session, this.session.getPrincipal(), report);
             event.setPrincipal(this.session.getPrincipal());
+            event.setReportDocument(reportDocument);
 
             InputStream reportIs = new ByteArrayInputStream(reportBytes);
             event.setContent(new FileBlob(reportIs));
@@ -125,6 +126,7 @@ public class GenerateReportWorker extends AbstractWork {
             EventService listenerManager = Framework
                     .getService(EventService.class);
             listenerManager.fireEvent(ReportEvents.REPORT_CREATED_EVENT, event);
+            LOG.info("Event threw for " + event.getReportDocument().getId());
 		} finally {
 			if (file.exists()) {
 				file.delete();

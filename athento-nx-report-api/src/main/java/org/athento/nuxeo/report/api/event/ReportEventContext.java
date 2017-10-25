@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import org.athento.nuxeo.report.api.model.Report;
 import org.nuxeo.ecm.core.api.CoreSession;
+import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.nuxeo.ecm.core.event.impl.EventContextImpl;
 
@@ -21,6 +22,7 @@ public class ReportEventContext extends EventContextImpl {
 	private static final long serialVersionUID = -3953481683599607883L;
 
 	private Report report;
+	private DocumentModel reportDocument;
 	private FileBlob content;
 
 	/**
@@ -60,4 +62,16 @@ public class ReportEventContext extends EventContextImpl {
 		this.content = content;
 	}
 
+	/**
+	 * Get report document.
+	 *
+	 * @return
+	 */
+	public DocumentModel getReportDocument() {
+		return reportDocument;
+	}
+
+	public void setReportDocument(DocumentModel reportDocument) {
+		this.reportDocument = reportDocument;
+	}
 }

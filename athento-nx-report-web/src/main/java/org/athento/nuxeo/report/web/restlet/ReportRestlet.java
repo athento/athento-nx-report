@@ -154,7 +154,7 @@ public class ReportRestlet extends BaseNuxeoRestlet implements Serializable {
 					documentManager, documentManager.getPrincipal(), report);
 			event.setPrincipal(documentManager.getPrincipal());
 
-			InputStream reportIs = new ByteArrayInputStream(reportBytes);
+            InputStream reportIs = new ByteArrayInputStream(reportBytes);
 			event.setContent(new FileBlob(reportIs));
 
 			EventService listenerManager = Framework
