@@ -1,5 +1,6 @@
 package org.athento.nuxeo.report.plugin.output;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -27,7 +28,7 @@ import org.athento.nuxeo.report.plugin.JRReport;
  * @author victorsanchez
  * 
  */
-public class PDFOutput extends AbstractOutput implements OutputReport {
+public class PDFOutput extends AbstractOutput implements OutputReport, Serializable{
 
 	private Log log = LogFactory.getLog(PDFOutput.class);
 
@@ -44,7 +45,7 @@ public class PDFOutput extends AbstractOutput implements OutputReport {
 				dataSource = new JREmptyDataSource();
 			}
 
-			Map<String, Object> parameters = report.getParameters();
+			Map parameters = report.getParameters();
 
 			String reportTitle = report.getDescriptor().getName();
 			parameters.put("REPORT_TITLE", reportTitle);

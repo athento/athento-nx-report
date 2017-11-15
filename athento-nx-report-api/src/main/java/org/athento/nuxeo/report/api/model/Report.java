@@ -1,5 +1,6 @@
 package org.athento.nuxeo.report.api.model;
 
+import java.io.Serializable;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +13,7 @@ import org.athento.nuxeo.report.api.xpoint.ReportDescriptor;
  * @author victorsanchez
  * 
  */
-public class Report {
+public class Report implements Serializable {
 
 	private DataSource<?> dataSource;
 	protected Map<String, Object> parameters;
@@ -52,7 +53,7 @@ public class Report {
 		return parameters;
 	}
 
-	public void addParameter(String param, Object value) {
+	public void addParameter(String param, Serializable value) {
 		parameters.put(param, value);
 	}
 

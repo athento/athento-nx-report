@@ -1,5 +1,6 @@
 package org.athento.nuxeo.report.api.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * @param <T>
  */
 public class DefaultDataSource<T extends BasicReportData> implements
-		DataSource<T> {
+		DataSource<T>, Serializable {
 
 	protected List<T> values;
 

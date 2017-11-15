@@ -1,5 +1,6 @@
 package org.athento.nuxeo.report.plugin;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import net.sf.jasperreports.engine.JasperReport;

@@ -1,5 +1,6 @@
 package org.athento.nuxeo.report.api.model;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import org.athento.nuxeo.report.api.ReportException;
@@ -10,7 +11,7 @@ import org.athento.nuxeo.report.api.ReportException;
  * @author victorsanchez
  * 
  */
-public abstract class AbstractReportManager implements ReportEngine {
+public abstract class AbstractReportManager implements ReportEngine, Serializable {
 
 	/**
 	 * Print report.

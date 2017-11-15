@@ -54,7 +54,7 @@ public class JXLSOutput extends AbstractOutput implements OutputReport {
 				dataSource = new JREmptyDataSource();
 			}
 
-			Map<String, Object> parameters = report.getParameters();
+			Map parameters = report.getParameters();
 
 			String reportTitle = report.getDescriptor().getName();
 			parameters.put("REPORT_TITLE", reportTitle);
