@@ -6,6 +6,8 @@ import org.nuxeo.common.xmap.annotation.XNode;
 import org.nuxeo.common.xmap.annotation.XObject;
 import org.nuxeo.runtime.api.Framework;
 
+import java.io.Serializable;
+
 /**
  * Report descriptor.
  * 
@@ -13,7 +15,7 @@ import org.nuxeo.runtime.api.Framework;
  * 
  */
 @XObject("report")
-public class ReportDescriptor {
+public class ReportDescriptor implements Serializable {
 
 	@XNode("@id")
 	private String id;

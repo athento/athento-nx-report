@@ -1,5 +1,6 @@
 package org.athento.nuxeo.report.api.model;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import org.athento.nuxeo.report.api.ReportException;

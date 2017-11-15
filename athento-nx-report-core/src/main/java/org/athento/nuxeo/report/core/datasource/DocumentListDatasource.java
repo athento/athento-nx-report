@@ -4,6 +4,7 @@ import org.athento.nuxeo.report.api.model.DataSource;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.DocumentModelList;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Collection;
  *
  * @author victorsanchez
  */
-public class DocumentListDatasource implements DataSource<DocumentModel> {
+public class DocumentListDatasource implements DataSource<DocumentModel>, Serializable {
 
     private Collection<DocumentModel> documentList;
 

@@ -1,13 +1,12 @@
 package org.athento.nuxeo.report.core.datasource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.athento.nuxeo.report.api.ReportException;
-import org.athento.nuxeo.report.api.model.Report;
-import org.athento.nuxeo.report.api.model.ReportHandler;
+import org.athento.nuxeo.report.api.model.*;
 import org.nuxeo.common.utils.StringUtils;
 import org.nuxeo.ecm.core.api.CoreSession;
-import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.DocumentModelList;
-import org.nuxeo.ecm.core.api.impl.DocumentModelListImpl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +17,9 @@ import java.util.Map;
  * Documents report handler.
  */
 public abstract class DocumentReportHandler implements ReportHandler {
+
+    /** Log. */
+    private static final Log LOG = LogFactory.getLog(DocumentReportHandler.class);
 
     /**
      * Handler report.
@@ -40,15 +42,37 @@ public abstract class DocumentReportHandler implements ReportHandler {
      */
     public void setDatasource(Report report, CoreSession session,
                               Map<String, Object> params) {
-        DocumentModelList docList = new DocumentModelListImpl();
         if (params.get("docIds") != null) {
             List<String> documentIds = Arrays.asList(((String) params.get("docIds")).split(","));
-            docList = getDocuments(session, documentIds);
+            DocumentModelList docList = getDocuments(session, documentIds);
+            // Set data-source
+            report.setDataSource(new DocumentListDatasource(docList));
         } else if (params.get("query") != null) {
-            docList = getDocuments(session, (String) params.get("query"));
+            DocumentModelList docList = getDocuments(session, (String) params.get("query"));
+            // Set data-source
+            report.setDataSource(new DocumentListDatasource(docList));
+        } else if (params.get("lines") != null && ("true".equals(params.get("lines")))) {
+            List<MapReportData> list = new ArrayList<>();
+            int i = 0;
+            for (Map.Entry<String, Object> param : params.entrySet()) {
+                if (!param.getKey().startsWith("line")) {
+                    continue;
+                }
+                String line = (String) params.get("line" + ++i);
+                if (line == null) {
+                    continue;
+                }
+                MapReportData mapData = new MapReportData();
+                String[] properties = line.split("\n");
+                for (String property : properties) {
+                    KeyValueReportData keyValueReportData = new KeyValueReportData(property);
+                    mapData.put(keyValueReportData.getKey(), keyValueReportData.getValue());
+                }
+                list.add(mapData);
+            }
+            // Set metadata data-source based on metadata document
+            report.setDataSource(new MapListDatasource(list));
         }
-        // Set data-source
-        report.setDataSource(new DocumentListDatasource(docList));
 
     }
 
