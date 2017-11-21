@@ -1,7 +1,5 @@
 package org.athento.nuxeo.report.api.model;
 
-import java.io.Serializable;
-
 /**
  * Key value Report data.
  * 
@@ -33,7 +31,11 @@ public class KeyValueReportData extends BasicReportData {
 	public KeyValueReportData(String keyValue) {
 	    if (keyValue.contains("=")) {
             this.key = keyValue.split("=")[0].trim();
-            this.value = keyValue.split("=")[1].trim();
+            try {
+				this.value = keyValue.split("=")[1].trim();
+			} catch (IndexOutOfBoundsException e) {
+            	this.value = "";
+			}
         }
 	}
 
