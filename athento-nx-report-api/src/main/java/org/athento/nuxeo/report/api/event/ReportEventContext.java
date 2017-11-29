@@ -33,6 +33,7 @@ public class ReportEventContext extends EventContextImpl {
 	 */
 	public ReportEventContext(CoreSession session, Principal principal, Report report) {
 		super(session, principal, report, null);
+		this.report = report;
 	}
 
 	/**

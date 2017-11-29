@@ -20,10 +20,7 @@ import org.nuxeo.ecm.core.event.EventService;
 import org.nuxeo.ecm.core.work.AbstractWork;
 import org.nuxeo.runtime.api.Framework;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.InputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -83,17 +80,19 @@ public class GenerateReportWorker extends AbstractWork {
 	@Override
 	public void work() throws Exception {
 		initSession();
-
-        // Load handler for report
-        loadHandler(report, this.properties);
-
-		// Get report bytes
-		byte[] reportBytes = reportEngine.print(report, output,
-                (Map) this.properties);
-
-		// Save the output report into user-workspace path
-		File file = File.createTempFile("report-ath-", "byte");
+		File file = null;
+		DocumentModel reportDocument = null;
 		try {
+			notifyEvent(ReportEvents.REPORT_STARTED_EVENT, null, null);
+			// Load handler for report
+			loadHandler(report, this.properties);
+
+			// Get report bytes
+			byte[] reportBytes = reportEngine.print(report, output,
+					(Map) this.properties);
+
+			// Save the output report into user-workspace path
+			file = File.createTempFile("report-ath-", "byte");
 			// Write report into file
 			FileUtils.writeByteArrayToFile(file, reportBytes);
 			FileBlob blob = new FileBlob(file);
@@ -101,41 +100,62 @@ public class GenerateReportWorker extends AbstractWork {
 					+ (outputFormat != null ? outputFormat : "out"));
 			blob.setMimeType(this.output.getMimetype());
 			blob.setEncoding(this.output.getEncoding());
+
 			// Check destiny folder for save the report
 			if (destiny == null) {
 				throw new DocumentException("Destiny folder is not found!");
 			}
-			DocumentModel reportDocument =
+			reportDocument =
 					session.createDocumentModel(destiny.getPathAsString(), IdUtils.generateStringId(), "File");
 			// Set default properties
 			reportDocument.setPropertyValue("dc:title", getTitle());
 			reportDocument.setPropertyValue("file:content", blob);
-            // Create document
-            reportDocument = this.session.createDocument(reportDocument);
+			// Create document
+			reportDocument = this.session.createDocument(reportDocument);
 			// Save document
 			this.session.saveDocument(reportDocument);
-
-            // Throw generated event
-            final ReportEventContext event = new ReportEventContext(
-                    this.session, this.session.getPrincipal(), report);
-            event.setPrincipal(this.session.getPrincipal());
-            event.setReportDocument(reportDocument);
-
-            InputStream reportIs = new ByteArrayInputStream(reportBytes);
-            event.setContent(new FileBlob(reportIs));
-
-            EventService listenerManager = Framework
-                    .getService(EventService.class);
-            listenerManager.fireEvent(ReportEvents.REPORT_CREATED_EVENT, event);
-            LOG.info("Event threw for " + event.getReportDocument().getId());
+			// Notify report ends
+			notifyEvent(ReportEvents.REPORT_CREATED_EVENT, reportDocument, reportBytes);
+		} catch (Exception e) {
+			LOG.error("Report exception occurred", e);
+			// Notify report error
+			notifyEvent(ReportEvents.REPORT_ERROR_EVENT, reportDocument, null);
 		} finally {
-			if (file.exists()) {
+			if (file != null && file.exists()) {
 				file.delete();
 			}
 		}
 	}
 
     /**
+     * Notify event.
+     *
+     * @param eventName
+     * @param reportDocument
+     * @param reportBytes
+     * @throws IOException on error
+     */
+	private void notifyEvent(String eventName, DocumentModel reportDocument, byte [] reportBytes) throws IOException {
+		EventService listenerManager = Framework
+				.getService(EventService.class);
+		// Throw generated event
+		final ReportEventContext event = new ReportEventContext(
+				this.session, this.session.getPrincipal(), report);
+		event.setPrincipal(this.session.getPrincipal());
+		if (reportDocument != null) {
+			event.setReportDocument(reportDocument);
+		}
+		if (reportBytes != null) {
+			InputStream reportIs = new ByteArrayInputStream(reportBytes);
+			event.setContent(new FileBlob(reportIs));
+		}
+		listenerManager.fireEvent(eventName, event);
+		if (LOG.isInfoEnabled()) {
+			LOG.info("Report event launched for " + eventName);
+		}
+	}
+
+	/**
      * Set report properties.
      */
     public void setProperties(Properties properties) {
