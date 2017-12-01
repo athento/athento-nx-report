@@ -141,6 +141,7 @@ public class GenerateReportWorker extends AbstractWork {
 		// Throw generated event
 		final ReportEventContext event = new ReportEventContext(
 				this.session, this.session.getPrincipal(), report);
+		event.getProperties().putAll(this.properties);
 		event.setPrincipal(this.session.getPrincipal());
 		if (reportDocument != null) {
 			event.setReportDocument(reportDocument);
