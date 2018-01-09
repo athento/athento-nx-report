@@ -46,6 +46,7 @@ public class GenerateReportWorker extends AbstractWork {
 	private DocumentModel destiny;
 	private String title;
     private Properties properties;
+    private String doctype;
 
 	/**
 	 * Constructor.
@@ -56,14 +57,16 @@ public class GenerateReportWorker extends AbstractWork {
 	 * @param outputFormat is the output format
 	 * @param destiny is the folder to save the generated report
 	 * @param title is the report title
+	 * @param doctype is the document type
      */
-	public GenerateReportWorker(ReportEngine engine, Report report, OutputReport output, String outputFormat, DocumentModel destiny, String title) {
+	public GenerateReportWorker(ReportEngine engine, Report report, OutputReport output, String outputFormat, DocumentModel destiny, String title, String doctype) {
 		this.reportEngine = engine;
         this.report = report;
 		this.output = output;
 		this.outputFormat = outputFormat;
 		this.destiny = destiny;
 		this.title = title;
+		this.doctype = doctype;
 	}
 
 	@Override
@@ -106,10 +109,15 @@ public class GenerateReportWorker extends AbstractWork {
 				throw new DocumentException("Destiny folder is not found!");
 			}
 			reportDocument =
-					session.createDocumentModel(destiny.getPathAsString(), IdUtils.generateStringId(), "File");
+					session.createDocumentModel(destiny.getPathAsString(), IdUtils.generateStringId(), doctype);
 			// Set default properties
 			reportDocument.setPropertyValue("dc:title", getTitle());
-			reportDocument.setPropertyValue("file:content", blob);
+			if (reportDocument.hasSchema("file")) {
+                reportDocument.setPropertyValue("file:content", blob);
+            } else {
+			    throw new ReportException("Document type " + doctype +
+                        " has no 'file' schema to save generated report.");
+            }
 			// Create document
 			reportDocument = this.session.createDocument(reportDocument);
 			// Save document

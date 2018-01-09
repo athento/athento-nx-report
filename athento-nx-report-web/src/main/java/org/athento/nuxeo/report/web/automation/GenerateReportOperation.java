@@ -54,7 +54,7 @@ public class GenerateReportOperation {
     protected String engine = "jr";
 
     /** Report alias. */
-    @Param(name = "alias", required = true, description = "Report alias")
+    @Param(name = "alias", description = "Report alias")
     protected String alias;
 
     /** Report output format. */
@@ -65,6 +65,10 @@ public class GenerateReportOperation {
     /** Properties. */
     @Param(name = "properties", required = false, description= "Properties for the report")
     protected Properties properties;
+
+    /** Doctype to create report. */
+    @Param(name = "doctype", required = false, description= "Document type to save the report")
+    protected String doctype = "File";
 
     /**
      * Run and save into destiny document.
@@ -107,7 +111,7 @@ public class GenerateReportOperation {
         }
 
         // Report worker
-        GenerateReportWorker reportWorker = new GenerateReportWorker(engine, report, output, this.format, destiny, title);
+        GenerateReportWorker reportWorker = new GenerateReportWorker(engine, report, output, this.format, destiny, title, doctype);
         reportWorker.setProperties(this.properties);
         workManager.schedule(reportWorker, WorkManager.Scheduling.IF_NOT_RUNNING_OR_SCHEDULED);
 
